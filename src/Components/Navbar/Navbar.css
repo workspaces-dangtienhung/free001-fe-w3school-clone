@@ -1,0 +1,56 @@
+.navitems:hover {
+  background-color: rgb(14, 151, 14);
+}
+
+.navitems {
+  padding: 13px;
+}
+
+.navitemsbuttons {
+  padding: 10px;
+  float: right;
+}
+
+.btncst {
+  width: 130px;
+  height: 40px;
+  float: right;
+  border-radius: 17px;
+}
+
+.contentdiv {
+  height: 350px;
+  width: 600px;
+  background-color: brown;
+  margin-top: 60px;
+}
+
+.iconImage {
+  width: 60px;
+  height: 55px;
+}
+
+.course:hover {
+  background-color: green;
+  color: white;
+}
+
+.box31 {
+  border: none;
+  background-color: #f8f9fa;
+}
+
+.box31:hover {
+  background-color: #0e970e;
+}
+
+.box32 {
+  color: white;
+  cursor: pointer;
+}
+
+.box32:hover {
+  color: black;
+  background-color: #cccccc;
+  cursor: pointer;
+}

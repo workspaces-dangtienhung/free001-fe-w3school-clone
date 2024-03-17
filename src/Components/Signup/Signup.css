@@ -1,0 +1,62 @@
+.box52 {
+  height: 577px;
+  margin-top: 0px;
+}
+
+.box53 {
+  background-color: white;
+  padding: 40px;
+  border-radius: 15px;
+  margin: auto;
+  height: 450px;
+  border-style: groove;
+}
+
+.box54 {
+  text-align: center;
+}
+
+.box55 {
+  text-align: center;
+}
+
+.box56 {
+  padding-left: 90px;
+  font-size: 14px;
+}
+
+.box57 {
+  background-color: white;
+}
+
+.loginButtons {
+  width: 300px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: green;
+}
+
+.iconImage {
+  width: 70px;
+  height: 50px;
+  padding-left: 20px;
+  padding-top: 8px;
+}
+
+@media only screen and (max-width: 953px) {
+  .loginButtons {
+    width: 100px;
+    border-radius: 15px;
+  }
+  .box52 {
+    margin: 0px 10px;
+  }
+}

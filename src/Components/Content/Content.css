@@ -1,0 +1,108 @@
+.box41 {
+  overflow: scroll;
+  height: 100vh;
+  position: fixed;
+}
+
+.box42 {
+  background-color: #e7e9eb;
+}
+
+.box42:hover {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.box43 {
+  position: relative;
+}
+
+.box44 {
+  display: block;
+}
+
+.box44:hover {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.box46 {
+  background-color: #e7e9eb;
+  padding: 30px;
+}
+
+.box47 {
+  font-size: 60px;
+  color: #ffc0c7;
+  margin-left: 100px;
+}
+
+.box48 {
+  font-size: 50px;
+  color: #ffc0c7;
+  margin-left: 100px;
+}
+
+.box49 {
+  border-radius: 25px;
+  display: inline-block;
+  width: 200px;
+  background-color: #059862;
+  color: white;
+  margin-left: 100px;
+}
+
+.box50 {
+  margin: 30px;
+  background-color: white;
+}
+.box51 {
+  display: inline-block;
+}
+
+@media only screen and (max-width: 998px) {
+  .box45 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .box47 {
+    margin-left: 30px;
+    font-size: 40px;
+  }
+
+  .box48 {
+    margin-left: 30px;
+    font-size: 40px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .box46 {
+    background-color: #e7e9eb;
+    padding: 0px;
+  }
+
+  .box50 {
+    margin: 10px;
+    background-color: white;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .box49 {
+    margin-left: 50px;
+    width: 100px;
+    padding: 5px;
+  }
+  .box46 {
+    padding: 0px;
+  }
+  .box50 {
+    margin: 0px;
+  }
+  .box51 {
+    display: none;
+  }
+}
