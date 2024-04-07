@@ -8,5 +8,5 @@ export const routes = createBrowserRouter([
 	{ path: '/', element: <Navbar /> },
 	{ path: '/login', element: <Login /> },
 	{ path: '/signup', element: <Signup /> },
-	{ path: '/content', element: <Content /> },
+	{ path: '/content/:id', element: <Content /> },
 ]);
