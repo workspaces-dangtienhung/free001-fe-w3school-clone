@@ -9,8 +9,8 @@
 }
 
 .box42:hover {
-  background-color: #04aa6d;
-  color: white;
+  background-color: #04aa6d !important;
+  color: white !important;
 }
 
 .box43 {

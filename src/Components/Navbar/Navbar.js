@@ -2,11 +2,12 @@ import './Navbar.css';
 
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { getSubAndCategory, listCategory } from '../../apis/content';
 
 import LandingPage from '../LandingPage/LandingPage';
 import img1 from '../../Images/channels4_profile.jpg';
-import { listCategory } from '../../apis/content';
 import { toast } from 'react-hot-toast';
+import { useId } from 'react';
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Navbar = () => {
 	useEffect(() => {
 		(async () => {
 			try {
-				const response = await listCategory();
+				const response = await getSubAndCategory();
 				setListCategorys(response.data.data);
 			} catch (error) {
 				console.log(error);
@@ -30,8 +31,8 @@ const Navbar = () => {
 		navigate('/login');
 	}
 
-	function navigateToContent(id) {
-		navigate(`/content/${id}`);
+	function navigateToContent(id, categoryName) {
+		navigate(`/content/${id}?categoryName=${categoryName}`);
 	}
 
 	function logOut() {
@@ -142,109 +143,23 @@ const Navbar = () => {
 							>
 								<div className="mt-5" style={{ paddingLeft: '50px' }}>
 									<h3 style={{ color: '#FFF4A3' }}>{category.categoryName}</h3>
-									<h5
-										onClick={() => navigateToContent(category.id)}
-										className="box32"
-									>
-										Learn {category.categoryName}
-									</h5>
-									{/* <h5 className="box32">Learn CSS</h5>
-									<h5 className="box32">Learn RWD</h5>
-									<h5 className="box32">Learn Boostrap</h5>
-									<h5 className="box32">Learn W3.CSS</h5>
-									<h5 className="box32">Learn Colors</h5>
-									<h5 className="box32">Learn Icons</h5>
-									<h5 className="box32">Learn Graphics</h5>
-									<h5 className="box32">Learn SVG</h5>
-									<h5 className="box32">Learn How to</h5>
-									<h5 className="box32">Learn Sass</h5> */}
+									{category.listChild.map((subCategory) => {
+										return (
+											<h5
+												key={subCategory.id}
+												onClick={() =>
+													navigateToContent(category.id, category.categoryName)
+												}
+												className="box32"
+											>
+												Learn {subCategory.categoryName}
+											</h5>
+										);
+									})}
 								</div>
 							</div>
 						);
 					})}
-					{/* <div className="col-sm-3" style={{ height: 'auto' }}>
-						<div className="mt-5" style={{ paddingLeft: '50px' }}>
-							<h3 style={{ color: '#FFF4A3' }}>JavaScript</h3>
-							<h5 className="box32">Learn JavaScript</h5>
-							<h5 className="box32">Learn JQuery</h5>
-							<h5 className="box32">Learn React</h5>
-							<h5 className="box32">Learn AngularJS</h5>
-							<h5 className="box32">Learn JSON</h5>
-							<h5 className="box32">Learn AJAX</h5>
-							<h5 className="box32">Learn AppML</h5>
-							<h5 className="box32">Learn W3.JS</h5>
-						</div>
-					</div>
-					<div className="col-sm-3" style={{ height: 'auto' }}>
-						<div className="mt-5" style={{ paddingLeft: '50px' }}>
-							<h3 style={{ color: '#FFF4A3' }}>Server Side</h3>
-							<h5 className="box32">Learn SQL</h5>
-							<h5 className="box32">Learn MYSQL</h5>
-							<h5 className="box32">Learn React</h5>
-							<h5 className="box32">Learn AngularJS</h5>
-							<h5 className="box32">Learn JSON</h5>
-							<h5 className="box32">Learn AJAX</h5>
-							<h5 className="box32">Learn AppML</h5>
-							<h5 className="box32">Learn W3.JS</h5>
-						</div>
-					</div>
-					<div className="col-sm-3" style={{ height: 'auto' }}>
-						<div className="mt-5" style={{ paddingLeft: '50px' }}>
-							<h3 style={{ color: '#FFF4A3' }}>Data Analytics</h3>
-							<h5 className="box32">Learn AI</h5>
-							<h5 className="box32">Learn Machine Learning</h5>
-							<h5 className="box32">Learn Data Science</h5>
-							<h5 className="box32">Learn Numpy</h5>
-							<h5 className="box32">Learn Pandas</h5>
-							<h5 className="box32">Learn Scipy</h5>
-							<h5 className="box32">Learn Matplotlib</h5>
-							<h5 className="box32">Learn Statistics</h5>
-							<h5 className="box32">Learn Excel</h5>
-							<h5 className="box32">Learn Google Sheets</h5>
-						</div>
-					</div>
-					<div className="col-sm-3" style={{ height: 'auto' }}>
-						<div className="mt-5 mb-5" style={{ paddingLeft: '50px' }}>
-							<h3 style={{ color: '#FFF4A3' }}>Programming</h3>
-							<h5 className="box32">Learn Python</h5>
-							<h5 className="box32">Learn JavaScript</h5>
-							<h5 className="box32">Learn C</h5>
-							<h5 className="box32">Learn C++</h5>
-							<h5 className="box32">Learn C#</h5>
-							<h5 className="box32">Learn R</h5>
-							<h5 className="box32">Learn Kotlin</h5>
-							<h5 className="box32">Learn Go</h5>
-							<h5 className="box32">Learn Django</h5>
-							<h5 className="box32">Learn Typecript</h5>
-						</div>
-					</div>
-
-					<div className="col-sm-3" style={{ height: 'auto' }}>
-						<div className="mt-5 mb-5" style={{ paddingLeft: '50px' }}>
-							<h3 style={{ color: '#FFF4A3' }}>Web Building</h3>
-							<h5 className="box32">Create a Website</h5>
-							<h5 className="box32">Where to Start</h5>
-							<h5 className="box32">Web Templates</h5>
-							<h5 className="box32">Web Statistics</h5>
-							<h5 className="box32">Web Certificates</h5>
-							<h5 className="box32">Web Development</h5>
-							<h5 className="box32">Code Editor</h5>
-							<h5 className="box32">Test Your Typing</h5>
-							<h5 className="box32">Play a Code Game</h5>
-						</div>
-					</div>
-
-					<div className="col-sm-3" style={{ height: 'auto' }}>
-						<div className="mt-5 mb-5" style={{ paddingLeft: '50px' }}>
-							<h3 style={{ color: '#FFF4A3' }}>XML Tutorials</h3>
-							<h5 className="box32">Learn XML</h5>
-							<h5 className="box32">Learn XML AJAX</h5>
-							<h5 className="box32">Learn XML DOM</h5>
-							<h5 className="box32">Learn XML DTD</h5>
-							<h5 className="box32">Learn XML Schema</h5>
-							<h5 className="box32">Learn XPath</h5>
-						</div>
-					</div> */}
 				</div>
 			) : null}
 			<LandingPage />

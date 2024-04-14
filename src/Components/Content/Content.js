@@ -1,16 +1,18 @@
 import './Content.css';
 
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { getContent, subCategory } from '../../apis/content';
 
 import ContentMain from './content-main';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 
 const Content = () => {
 	const { id } = useParams();
+	const [searchParams] = useSearchParams();
+	const categoryName = searchParams?.get('categoryName');
 	const [course, setCourse] = useState(null);
 	const [content, setContent] = useState([]);
+	const [active, setActive] = useState(0);
 
 	const handleClick = async (id) => {
 		try {
@@ -26,6 +28,8 @@ const Content = () => {
 			try {
 				const response = await subCategory(id);
 				setCourse(response.data.data);
+				const result = await getContent(response.data.data[active].id);
+				setContent(result.data.data);
 			} catch (error) {
 				console.log(error);
 			}
@@ -38,29 +42,43 @@ const Content = () => {
 				<div
 					className="col-2 box41 box45"
 					style={{
-						backgroundColor: '#E5E7E9',
+						backgroundColor: '#fff',
 						paddingLeft: '0%',
 						paddingRight: '0%',
 					}}
 				>
-					<h5 className="mt-3" style={{ paddingLeft: '10px' }}>
-						HTML Tutorials
-					</h5>
+					<Link to={'/'}>
+						<h5 className="mt-3" style={{ paddingLeft: '10px' }}>
+							{categoryName} Tutorials
+						</h5>
+					</Link>
 					{course &&
 						course.length > 0 &&
-						course.map((item) => (
+						course.map((item, index) => (
 							<Link
 								key={item.id}
-								onClick={() => handleClick(item.id)}
+								onClick={() => {
+									handleClick(item.id);
+									setActive(index);
+								}}
 								className="box44"
-								style={{ paddingLeft: '10px' }}
+								style={{
+									paddingLeft: '10px',
+									backgroundColor: active === index ? '#04aa6d' : '',
+									color: active === index ? '#fff' : '',
+									padding: '8px',
+								}}
 							>
 								{item.categoryName}
 							</Link>
 						))}
 				</div>
 
-				<ContentMain content={content} />
+				<ContentMain
+					onSetNext={() => setActive(active + 1)}
+					active={active}
+					content={content}
+				/>
 
 				{/* <div
 					className="col-lg-10 box43 offset-lg-2"

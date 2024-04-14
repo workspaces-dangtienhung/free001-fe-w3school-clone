@@ -1,12 +1,15 @@
 import React, { Fragment } from 'react';
 
+import { Link } from 'react-router-dom';
+import NotFound from '../not-found/not-found';
 import parse from 'html-react-parser';
 
-const ContentMain = (content) => {
-	console.log('🚀 ~ ContentMain ~ content:', content);
+const ContentMain = (content, onSetNext, active) => {
 	if (!content) return <div>Khong có nội dung</div>;
+
 	return (
 		<div className="col-lg-10 box43 offset-lg-2" style={{ height: '200vh' }}>
+			{content && content.content.length === 0 && <NotFound />}
 			{content &&
 				content.content.length > 0 &&
 				content.content.map((item) => (
@@ -34,10 +37,13 @@ const ContentMain = (content) => {
 				))}
 			<div className="row mt-5" style={{ paddingLeft: '10px' }}>
 				<div className="col">
-					<button className="btn btn-success btn-lg float-start mb-5">
+					<Link to={'/'} className="btn btn-success btn-lg float-start mb-5">
 						Home
-					</button>
-					<button className="btn btn-success btn-lg float-end mb-5">
+					</Link>
+					<button
+						className="btn btn-success btn-lg float-end mb-5"
+						onClick={() => onSetNext(active + 1)}
+					>
 						Next
 					</button>
 				</div>

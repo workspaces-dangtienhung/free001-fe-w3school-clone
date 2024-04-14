@@ -15,3 +15,7 @@ export const listCategory = async (parentCategoryId) => {
 		parentCategoryId,
 	});
 };
+
+export const getSubAndCategory = async () => {
+	return instance.post(`/category/listAndSub`, {});
+};
