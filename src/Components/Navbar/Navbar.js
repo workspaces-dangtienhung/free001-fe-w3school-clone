@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import LandingPage from '../LandingPage/LandingPage';
 import img1 from '../../Images/channels4_profile.jpg';
 import { listCategory } from '../../apis/content';
+import { toast } from 'react-hot-toast';
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -34,9 +35,9 @@ const Navbar = () => {
 	}
 
 	function logOut() {
-		alert('You have been Successfully Logout');
-		localStorage.setItem('UserName', 'Non');
+		toast.success('You have been Successfully Logout');
 		navigate('/');
+		localStorage.setItem('UserName', 'Non');
 	}
 
 	function showNav() {
