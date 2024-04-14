@@ -2,19 +2,17 @@ import './Navbar.css';
 
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { getSubAndCategory, listCategory } from '../../apis/content';
 
 import LandingPage from '../LandingPage/LandingPage';
+import { getSubAndCategory } from '../../apis/content';
 import img1 from '../../Images/channels4_profile.jpg';
 import { toast } from 'react-hot-toast';
-import { useId } from 'react';
 
 const Navbar = () => {
 	const navigate = useNavigate();
 	const [visible, setVisible] = useState(false);
 
 	const [listCategorys, setListCategorys] = useState([]);
-	console.log('🚀 ~ Navbar ~ listCategorys:', listCategorys);
 
 	useEffect(() => {
 		(async () => {
