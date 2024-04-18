@@ -106,3 +106,8 @@
     display: none;
   }
 }
+
+.style-content-example {
+  background: #E7E9EB;
+  padding: 20px 16px;
+}

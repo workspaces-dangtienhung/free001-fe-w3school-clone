@@ -5,6 +5,7 @@ import NotFound from '../not-found/not-found';
 import parse from 'html-react-parser';
 
 const ContentMain = (content, onSetNext, active) => {
+	console.log('🚀 ~ ContentMain ~ content:', content);
 	if (!content) return <div>Khong có nội dung</div>;
 
 	return (
@@ -27,12 +28,29 @@ const ContentMain = (content, onSetNext, active) => {
 							{item.content && parse(item.content)}
 						</div>
 
-						<div
-							className="row mt-5"
-							style={{ backgroundColor: '#D9EEE1', paddingLeft: '20px' }}
-						>
-							{item.contentExample && parse(item.contentExample)}
-						</div>
+						{item.contentExample && (
+							<div className="row mt-5 style-content-example">
+								<h2>{item.categoryName}</h2>
+								{item.contentExample && parse(item.contentExample)}
+								<Link
+									to={`/editor/${item.contentCode}`}
+									style={{
+										padding: '16px 24px',
+										backgroundColor: '#05AA6D',
+										color: '#fff',
+										borderRadius: '5px',
+										textDecoration: 'none',
+										width: '200px',
+										display: 'block',
+										textAlign: 'center',
+										marginLeft: '10px',
+										marginTop: '16px',
+									}}
+								>
+									Try it yourself
+								</Link>
+							</div>
+						)}
 					</Fragment>
 				))}
 			<div className="row mt-5" style={{ paddingLeft: '10px' }}>
