@@ -17,6 +17,7 @@ const Content = () => {
 	const handleClick = async (id) => {
 		try {
 			const response = await getContent(id);
+			console.log('🚀 ~ handleClick ~ response:', response);
 			setContent(response.data.data);
 		} catch (error) {
 			console.log(error);
@@ -91,10 +92,10 @@ const Content = () => {
 						HTML Tutorials
 					</h1>
 					<div
-						className="row mt-5"
+						className="mt-5 row"
 						style={{ backgroundColor: '#D9EEE1', paddingLeft: '20px' }}
 					>
-						<div className="col-lg-12 mt-5">
+						<div className="mt-5 col-lg-12">
 							<h6>HTML is the standard markup language for Web pages.</h6>
 							<h6>With HTML you can create your own Website</h6>
 							<h6>HTML is easy to learn - You will enjoy it!</h6>
@@ -111,7 +112,7 @@ const Content = () => {
 					<h1 className="mt-5" style={{ paddingLeft: '10px' }}>
 						Easy Learning with HTML "Try it Yourself
 					</h1>
-					<div className="row mt-4 box46">
+					<div className="mt-4 row box46">
 						<div className="col box50">
 							<img
 								className="img-fluid"
@@ -139,29 +140,29 @@ const Content = () => {
 							className="col"
 							style={{ backgroundColor: '#282A35', borderRadius: '20px' }}
 						>
-							<div className="col mt-5">
-								<div className="col mb-5">
+							<div className="mt-5 col">
+								<div className="mb-5 col">
 									<h1 className="box47">KickStart your carrer</h1>
 								</div>
-								<div className="col mb-5">
+								<div className="mb-5 col">
 									<h3 className="box48">
 										Get certified by completing a course
 									</h3>
 								</div>
 								<div>
-									<button type="button" className="btn mb-5 mt-4 box49">
+									<button type="button" className="mt-4 mb-5 btn box49">
 										Get Started
 									</button>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className="row mt-5" style={{ paddingLeft: '10px' }}>
+					<div className="mt-5 row" style={{ paddingLeft: '10px' }}>
 						<div className="col">
-							<button className="btn btn-success btn-lg float-start mb-5">
+							<button className="mb-5 btn btn-success btn-lg float-start">
 								Home
 							</button>
-							<button className="btn btn-success btn-lg float-end mb-5">
+							<button className="mb-5 btn btn-success btn-lg float-end">
 								Next
 							</button>
 						</div>

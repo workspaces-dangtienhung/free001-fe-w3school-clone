@@ -18,6 +18,7 @@ const Navbar = () => {
 		(async () => {
 			try {
 				const response = await getSubAndCategory();
+				console.log('🚀 ~ response:', response);
 				setListCategorys(response.data.data);
 			} catch (error) {
 				console.log(error);
@@ -98,7 +99,7 @@ const Navbar = () => {
 						<span className="navbar-toggler-icon"></span>
 					</button>
 					<div className="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul className="navbar-nav me-auto mb-2 mb-lg-0">
+						<ul className="mb-2 navbar-nav me-auto mb-lg-0">
 							<li className="nav-item navitems">
 								<button className="nav-link box31" onClick={showNav}>
 									<strong>Tutorials</strong>

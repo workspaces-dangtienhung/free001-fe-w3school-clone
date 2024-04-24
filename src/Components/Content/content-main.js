@@ -22,14 +22,14 @@ const ContentMain = (content, onSetNext, active) => {
 							{item.categoryName}
 						</h1>
 						<div
-							className="row mt-5"
+							className="mt-5 row"
 							style={{ backgroundColor: '#D9EEE1', paddingLeft: '20px' }}
 						>
 							{item.content && parse(item.content)}
 						</div>
 
 						{item.contentExample && (
-							<div className="row mt-5 style-content-example">
+							<div className="mt-5 row style-content-example">
 								<h2>{item.categoryName}</h2>
 								{item.contentExample && parse(item.contentExample)}
 								<Link
@@ -53,13 +53,13 @@ const ContentMain = (content, onSetNext, active) => {
 						)}
 					</Fragment>
 				))}
-			<div className="row mt-5" style={{ paddingLeft: '10px' }}>
+			<div className="mt-5 row" style={{ paddingLeft: '10px' }}>
 				<div className="col">
-					<Link to={'/'} className="btn btn-success btn-lg float-start mb-5">
+					<Link to={'/'} className="mb-5 btn btn-success btn-lg float-start">
 						Home
 					</Link>
 					<button
-						className="btn btn-success btn-lg float-end mb-5"
+						className="mb-5 btn btn-success btn-lg float-end"
 						onClick={() => onSetNext(active + 1)}
 					>
 						Next

@@ -14,9 +14,10 @@ import axios from 'axios';
 import { classnames } from '../../utils/general';
 import { defineTheme } from '../../utils/defineTheme';
 import { languageOptions } from '../../constants/languageOptions';
+import parse from 'html-react-parser';
 import { toast } from 'react-hot-toast';
 import useKeyPress from '../../hooks/useKeyPress';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const javascriptDefault = `/**
 * Problem: Binary Search: Search a sorted array for a target value.
@@ -49,7 +50,31 @@ console.log(binarySearch(arr, target));
 `;
 
 const Editor = () => {
-	const [code, setCode] = useState(javascriptDefault);
+	const { id } = useParams();
+
+	const [code, setCode] = useState('');
+
+	useEffect(() => {
+		(async () => {
+			if (id) {
+				// fetch the code snippet from the server
+				// and set the code state
+				try {
+					const response = await axios.post(
+						'http://localhost:8080/content/detail',
+						{
+							contentCode: id,
+						}
+					);
+					const { contentExample } = response.data.data;
+					setCode(contentExample);
+				} catch (error) {
+					toast.error('Error fetching code snippet');
+				}
+			}
+		})();
+	}, [id]);
+
 	const [customInput, setCustomInput] = useState('');
 	const [outputDetails, setOutputDetails] = useState(null);
 	const [processing, setProcessing] = useState(null);
@@ -204,7 +229,7 @@ const Editor = () => {
 
 	return (
 		<div>
-			<div className="tw-flex flex-row">
+			<div className="flex-row tw-flex">
 				<div className="px-4 py-2">
 					<LanguagesDropdown onSelectChange={onSelectChange} />
 				</div>
@@ -213,7 +238,7 @@ const Editor = () => {
 				</div>
 			</div>
 
-			<div className="tw-flex tw-flex-row tw-items-start px-4 py-4 tw-space-x-4 tw-w-full">
+			<div className="px-4 py-4 tw-flex tw-flex-row tw-items-start tw-space-x-4 tw-w-full">
 				<div className="tw-flex tw-flex-col tw-items-end tw-justify-start tw-h-full tw-flex-1">
 					<CodeEditorWindow
 						code={code}
